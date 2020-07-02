@@ -26,8 +26,8 @@ function startQuiz () {
 function clockTick () {
     time-- 
     timerEl.textContent = time;
-    if (time <= 0){
-        quizEnd()
+    if (time = 0){
+        quizEnd();   
     }
 }
 function getQuestion () {
@@ -46,23 +46,28 @@ function getQuestion () {
 
 }
 
-function questionClick () {
-     var score = document.getElementById("final-score");
-
-        if (choicenode === answer){
-            score++;
-        } else {
-            time -- 15;
-
-        }
+function questionClick (answer) {
+    var isCorrectAnswer =answer[i];
+    var score = document.getElementById("final-score");
+    
+    if(this.choices() === (answer)){
+        this.score++; 
+    } else if (choices === false) {
+        time --;
+    }
+        
+     this.currentQuestionIndex++;   
     
         //event.preventDefault();
     // questionsEl.appendChild(currentQuestion);
 }
 
+
 function quizEnd () {
+    clearInterval(time = 0);
+
     for (var i = 0; i < questions.length; i ++){
-        return;
+        
     }
 }
 
