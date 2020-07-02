@@ -10,6 +10,8 @@ var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var initalsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
+var startBtn = document.getElementById("start");
+
 
 
 
@@ -30,7 +32,7 @@ function clockTick () {
 }
 function getQuestion () {
     var currentQuestion = questions[currentQuestionIndex];
-    var titleEl // finish
+    var titleEl = 
     titleEl.textContent = currentQuestion.title;
     choicesEl.innerHTML = "";
     currentQuestion.choices.forEach(function(choice, i){
@@ -43,9 +45,13 @@ function getQuestion () {
     })
 
 }
+
 function questionClick () {
+    questions.append(startBtn);
     
-}
+    }
+
+
 function quizEnd () {
 
 }
