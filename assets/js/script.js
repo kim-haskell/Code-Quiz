@@ -17,16 +17,16 @@ var startBtn = document.getElementById("start");
 
 function startQuiz () {
     var startScreenEl = document.getElementById("start-screen");
-    startScreenEl.setAttribute("class", "hide");     //textContent = "";   
+    startScreenEl.setAttribute("class", "hide");      
     questionsEl.removeAttribute("class");
     timerID = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     getQuestion();
 }
 function clockTick () {
-    time-- 
+    time--; 
     timerEl.textContent = time;
-    if (time = 0){
+    if (time <= 0){
         quizEnd();   
     }
 }
@@ -46,29 +46,46 @@ function getQuestion () {
 
 }
 
-function questionClick (answer) {
-    var isCorrectAnswer =answer[i];
-    var score = document.getElementById("final-score");
-    
-    if(this.choices() === (answer)){
-        this.score++; 
-    } else if (choices === false) {
-        time --;
+function questionClick () {
+    if (this.value !== questions[currentQuestionIndex].answer) {
+        time = time - 15;
+        if (time < 0){
+            time = 0;
+        }
+        timerEl.textContent = time
+        feedbackEl.textContent = "Wrong";
+    } else {
+        feedbackEl.textContent = "Correct!";
     }
         
-     this.currentQuestionIndex++;   
-    
-        //event.preventDefault();
-    // questionsEl.appendChild(currentQuestion);
+     currentQuestionIndex++;
+     if (currentQuestionIndex === questions.length){
+         quizEnd();
+     } else {
+         getQuestion();
+     }
 }
 
 
 function quizEnd () {
-    clearInterval(time = 0);
-
-    for (var i = 0; i < questions.length; i ++){
-        
-    }
+   clearInterval(timerID);
+   var endScreenEl = document.getElementById("end-screen");
+   endScreenEl.removeAttribute("class");
+   var finalScoreEl = document.getElementById("final-score");
+   finalScoreEl.textContent = time;
+   questionsEl.setAttribute("class", "hide"); 
+    
 }
 
+function submitScore () {
+    var intials = document.getElementById("submit");
+    $(this).val("#intials");
+    localStorage.setItem(intials);
+
+    $("#submit").val(localStorage.getItem("#intials"));
+}
+
+
+
 startBtn.addEventListener("click", startQuiz);
+
